@@ -12,12 +12,14 @@ module.exports = {
   settings: { react: { version: "18.2" } },
   plugins: ["react", "react-hooks", "react-refresh"],
   rules: {
+    // react
     "react-refresh/only-export-components": "warn",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react/prop-types": 0,
     "react/display-name": 0,
 
+    // common
     "no-console": 1,
     "no-lonely-if": 1,
     "no-unused-vars": 1,
@@ -36,5 +38,13 @@ module.exports = {
     "comma-dangle": 1,
     "comma-spacing": 1,
     "arrow-spacing": 1,
+    
+    // mui
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": ["@mui/*/*/*"]
+      }
+    ]
   },
 };
