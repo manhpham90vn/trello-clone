@@ -25,19 +25,19 @@ const SelectMode = () => {
         label="Mode"
         onChange={handleChange}
       >
-        <MenuItem value='light'>
-          <div style={{ display:'flex', alignItems: 'center', gap: '8px' }}>
-            <LightModeIcon fontSize='small' /> Light
+        <MenuItem value="light">
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <LightModeIcon fontSize="small" /> Light
           </div>
         </MenuItem>
-        <MenuItem value='dark'>
-          <Box sx={{ display:'flex', alignItems: 'center', gap: 1 }}>
-            <DarkModeOutlinedIcon fontSize='small' /> Dark
+        <MenuItem value="dark">
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <DarkModeOutlinedIcon fontSize="small" /> Dark
           </Box>
         </MenuItem>
-        <MenuItem value='system'>
-          <div style={{ display:'flex', alignItems: 'center', gap: '8px' }}>
-            <SettingsBrightnessIcon fontSize='small' /> System
+        <MenuItem value="system">
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <SettingsBrightnessIcon fontSize="small" /> System
           </div>
         </MenuItem>
       </Select>
