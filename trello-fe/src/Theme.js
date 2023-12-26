@@ -12,6 +12,10 @@ const theme = extendTheme({
         primary: '#000'
       }
     }
+  },
+  trelloApp: {
+    appBarHeight: '48px',
+    boardBarHeight: '58px'
   }
 })
 
