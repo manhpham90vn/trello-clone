@@ -1,5 +1,5 @@
 import { Box } from '@mui/material'
-import SelectMode from '../SelectMode/SelectMode'
+import SelectMode from '~/components/SelectMode/SelectMode'
 
 const AppBar = () => {
   return (
