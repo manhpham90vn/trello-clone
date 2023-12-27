@@ -16,16 +16,7 @@
 				"ecmel.vscode-html-css",
 				"GitHub.copilot-chat",
 				"GitHub.copilot"
-			],
-			"settings": {
-				"files.autoSave": "afterDelay",
-				"files.autoSaveDelay": 1000,
-				"editor.formatOnSave": true,
-				"editor.defaultFormatter": "esbenp.prettier-vscode",
-				"editor.codeActionsOnSave": {
-					"source.organizeImports": true
-				}
-			}
+			]
 		}
 	}
 }
