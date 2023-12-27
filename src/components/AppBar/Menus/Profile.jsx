@@ -21,21 +21,26 @@ export default function Profile() {
 
   return (
     <Box>
-      <Tooltip title="Account settings">
+      <Tooltip title='Account settings'>
         <IconButton
           onClick={handleClick}
-          size="small"
+          size='small'
           sx={{ padding: 0 }}
           aria-controls={open ? 'account-menu' : undefined}
-          aria-haspopup="true"
+          aria-haspopup='true'
           aria-expanded={open ? 'true' : undefined}
         >
-          <Avatar src='https://avatars.githubusercontent.com/u/40340023' sx={{ width:30, height:30 }}>M</Avatar>
+          <Avatar
+            src='https://avatars.githubusercontent.com/u/40340023'
+            sx={{ width: 30, height: 30 }}
+          >
+            M
+          </Avatar>
         </IconButton>
       </Tooltip>
       <Menu
         anchorEl={anchorEl}
-        id="account-menu"
+        id='account-menu'
         open={open}
         onClose={handleClose}
         onClick={handleClose}
@@ -71,7 +76,7 @@ export default function Profile() {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         <MenuItem onClick={handleClose}>
-          <Avatar sx={{ width:30, height:30 }} /> Profile
+          <Avatar sx={{ width: 30, height: 30 }} /> Profile
         </MenuItem>
         <MenuItem onClick={handleClose}>
           <Avatar /> My account
@@ -79,21 +84,21 @@ export default function Profile() {
         <Divider />
         <MenuItem onClick={handleClose}>
           <ListItemIcon>
-            <PersonAdd fontSize="small" />
+            <PersonAdd fontSize='small' />
           </ListItemIcon>
-                    Add another account
+          Add another account
         </MenuItem>
         <MenuItem onClick={handleClose}>
           <ListItemIcon>
-            <Settings fontSize="small" />
+            <Settings fontSize='small' />
           </ListItemIcon>
-                    Settings
+          Settings
         </MenuItem>
         <MenuItem onClick={handleClose}>
           <ListItemIcon>
-            <Logout fontSize="small" />
+            <Logout fontSize='small' />
           </ListItemIcon>
-                    Logout
+          Logout
         </MenuItem>
       </Menu>
     </Box>

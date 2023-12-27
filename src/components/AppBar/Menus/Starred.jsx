@@ -26,9 +26,9 @@ export default function Starred() {
   return (
     <Box>
       <Button
-        id="basic-button"
+        id='basic-button'
         aria-controls={open ? 'basic-menu-starred' : undefined}
-        aria-haspopup="true"
+        aria-haspopup='true'
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
         endIcon={<ExpandMoreIcon />}
@@ -36,7 +36,7 @@ export default function Starred() {
         Starred
       </Button>
       <Menu
-        id="basic-menu-starred"
+        id='basic-menu-starred'
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
@@ -46,35 +46,44 @@ export default function Starred() {
       >
         <MenuItem>
           <ListItemIcon>
-            <ContentCut fontSize="small" />
+            <ContentCut fontSize='small' />
           </ListItemIcon>
           <ListItemText>Cut</ListItemText>
-          <Typography variant="body2" color="text.secondary">
+          <Typography
+            variant='body2'
+            color='text.secondary'
+          >
             ⌘X
           </Typography>
         </MenuItem>
         <MenuItem>
           <ListItemIcon>
-            <ContentCopy fontSize="small" />
+            <ContentCopy fontSize='small' />
           </ListItemIcon>
           <ListItemText>Copy</ListItemText>
-          <Typography variant="body2" color="text.secondary">
+          <Typography
+            variant='body2'
+            color='text.secondary'
+          >
             ⌘C
           </Typography>
         </MenuItem>
         <MenuItem>
           <ListItemIcon>
-            <ContentPaste fontSize="small" />
+            <ContentPaste fontSize='small' />
           </ListItemIcon>
           <ListItemText>Paste</ListItemText>
-          <Typography variant="body2" color="text.secondary">
+          <Typography
+            variant='body2'
+            color='text.secondary'
+          >
             ⌘V
           </Typography>
         </MenuItem>
         <Divider />
         <MenuItem>
           <ListItemIcon>
-            <Cloud fontSize="small" />
+            <Cloud fontSize='small' />
           </ListItemIcon>
           <ListItemText>Web Clipboard</ListItemText>
         </MenuItem>

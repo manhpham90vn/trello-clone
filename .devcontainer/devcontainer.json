@@ -1,20 +1,13 @@
 {
 	"name": "Trello Clone FE",
-
 	"workspaceFolder": "/workspace",
-
 	"service": "app",
-
 	"initializeCommand": "echo 'Initializing Trello Clone FE'",
-
 	"dockerComposeFile": "docker-compose.yml",
-
 	"postCreateCommand": "pnpm i && pnpm dev",
-
 	"forwardPorts": [
 		5173
 	],
-	
 	"customizations": {
 		"vscode": {
 			"extensions": [
@@ -23,7 +16,16 @@
 				"ecmel.vscode-html-css",
 				"GitHub.copilot-chat",
 				"GitHub.copilot"
-			]
+			],
+			"settings": {
+				"files.autoSave": "afterDelay",
+				"files.autoSaveDelay": 1000,
+				"editor.formatOnSave": true,
+				"editor.defaultFormatter": "esbenp.prettier-vscode",
+				"editor.codeActionsOnSave": {
+					"source.organizeImports": true
+				}
+			}
 		}
 	}
 }

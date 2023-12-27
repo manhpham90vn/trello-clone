@@ -22,9 +22,9 @@ export default function Recent() {
   return (
     <Box>
       <Button
-        id="basic-button"
+        id='basic-button'
         aria-controls={open ? 'basic-menu-recent' : undefined}
-        aria-haspopup="true"
+        aria-haspopup='true'
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
         endIcon={<ExpandMoreIcon />}
@@ -32,7 +32,7 @@ export default function Recent() {
         Recents
       </Button>
       <Menu
-        id="basic-menu-recent"
+        id='basic-menu-recent'
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}

@@ -11,7 +11,7 @@ const BoardBar = () => {
         alignItems: 'center'
       }}
     >
-        Board Bar
+      Board Bar
     </Box>
   )
 }
