@@ -13,6 +13,57 @@ const theme = extendTheme({
       }
     }
   },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          textTransform: 'none'
+        }
+      }
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: ({ theme }) => {
+          return {
+            color: theme.palette.primary.main,
+            fontSize: '0.875rem'
+          }
+        }
+      }
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: ({ theme }) => {
+          return {
+            color: theme.palette.primary.main,
+            fontSize: '0.875rem',
+            '.MuiOutlinedInput-notchedOutline': {
+              borderColor: theme.palette.primary.light
+            },
+            '&:hover': {
+              '.MuiOutlinedInput-notchedOutline': {
+                borderColor: theme.palette.primary.light
+              }
+            },
+            '& fieldset': {
+              borderWidth: '1px !important'
+            }
+          }
+        }
+      }
+    },
+    MuiSelect: {
+      styleOverrides: {
+        root: ({ theme }) => {
+          return {
+            '& .MuiSelect-iconOutlined': {
+              color: theme.palette.primary.main
+            }
+          }
+        }
+      }
+    }
+  },
   trelloApp: {
     appBarHeight: '58px',
     boardBarHeight: '60px'
