@@ -1,22 +1,28 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/javascript-node
 {
-	"name": "Node.js",
-	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/javascript-node:1-20-bullseye"
+	"name": "Trello Clone FE",
 
-	// Features to add to the dev container. More info: https://containers.dev/features.
-	// "features": {},
+	"workspaceFolder": "/workspace",
 
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
+	"service": "app",
 
-	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "yarn install",
+	"initializeCommand": "echo 'Initializing Trello Clone FE'",
 
-	// Configure tool-specific properties.
-	// "customizations": {},
+	"dockerComposeFile": "docker-compose.yml",
 
-	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	// "remoteUser": "root"
+	"postCreateCommand": "pnpm i && pnpm dev",
+
+	"forwardPorts": [
+		5173
+	],
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"dbaeumer.vscode-eslint",
+				"esbenp.prettier-vscode",
+				"ecmel.vscode-html-css",
+				"GitHub.copilot-chat",
+				"GitHub.copilot"
+			]
+		}
+	}
 }
