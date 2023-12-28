@@ -20,13 +20,35 @@ const SelectMode = () => {
       sx={{ m: 1, minWidth: 120 }}
       size='small'
     >
-      <InputLabel id='select-dark-light-mode-input'>Mode</InputLabel>
+      <InputLabel
+        id='select-dark-light-mode-input'
+        sx={{
+          color: 'white'
+        }}
+      >
+        Mode
+      </InputLabel>
       <Select
         labelId='select-dark-light-mode-input'
         id='select-dark-light-mode'
         value={mode}
         label='Mode'
         onChange={handleChange}
+        sx={{
+          color: 'white',
+          '.MuiOutlinedInput-notchedOutline': {
+            borderColor: 'white'
+          },
+          '&:hover .MuiOutlinedInput-notchedOutline': {
+            borderColor: 'white'
+          },
+          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+            borderColor: 'white'
+          },
+          '.MuiSvgIcon-root': {
+            color: 'white'
+          }
+        }}
       >
         <MenuItem value='light'>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>

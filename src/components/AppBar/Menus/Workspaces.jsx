@@ -32,6 +32,7 @@ export default function Workspaces() {
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
         endIcon={<ExpandMoreIcon />}
+        sx={{ color: 'white' }}
       >
         Dashboard
       </Button>

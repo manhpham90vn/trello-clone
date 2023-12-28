@@ -11,13 +11,13 @@ import Button from '@mui/material/Button'
 import Chip from '@mui/material/Chip'
 
 const MenuStyle = {
-  color: 'primary.main',
-  backgroundColor: 'white',
+  color: 'white',
+  backgroundColor: 'transparent',
   border: 'none',
   paddingX: '5px',
   borderRadius: '4px',
-  '& .MuiSvgIcon-root': {
-    color: 'primary.main'
+  '.MuiSvgIcon-root': {
+    color: 'white'
   },
   '&:hover': {
     backgroundColor: 'primary.50'
@@ -36,7 +36,9 @@ const BoardBar = () => {
         gap: 2,
         paddingX: 2,
         overflowX: 'auto',
-        borderTop: '1px solid #1976d2'
+        borderTop: '1px solid #1976d2',
+        backgroundColor: (theme) =>
+          theme.palette.mode === 'dark' ? '#34495e' : '#1976d2'
       }}
     >
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
@@ -79,6 +81,11 @@ const BoardBar = () => {
         <Button
           variant='outlined'
           startIcon={<PersonAddIcon />}
+          sx={{
+            color: 'white',
+            borderColor: 'white',
+            '&:hover': { borderColor: 'white' }
+          }}
         >
           Invite
         </Button>
