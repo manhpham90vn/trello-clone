@@ -1,25 +1,23 @@
 {
-	"name": "Trello Clone FE",
-	"workspaceFolder": "/workspace",
-	"service": "app",
-	"initializeCommand": "echo 'Initializing Trello Clone FE'",
-	"dockerComposeFile": "docker-compose.yml",
-	"postCreateCommand": "pnpm i && pnpm dev",
-	"forwardPorts": [
-		5173
-	],
-	"customizations": {
-		"vscode": {
-			"extensions": [
-				"dbaeumer.vscode-eslint",
-				"esbenp.prettier-vscode",
-				"ecmel.vscode-html-css",
-				"GitHub.copilot-chat",
-				"GitHub.copilot"
-			]
-		}
-	},
-	"features": {
-		"ghcr.io/devcontainers/features/github-cli:1": {}
-	}
+  "name": "Trello Clone FE",
+  "workspaceFolder": "/workspace",
+  "service": "app",
+  "initializeCommand": "echo 'Initializing Trello Clone FE'",
+  "dockerComposeFile": "docker-compose.yml",
+  "postCreateCommand": "pnpm i && pnpm dev",
+  "forwardPorts": [5173],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "ecmel.vscode-html-css",
+        "GitHub.copilot-chat",
+        "GitHub.copilot"
+      ]
+    }
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  }
 }
