@@ -23,7 +23,10 @@ const SelectMode = () => {
       <InputLabel
         id='select-dark-light-mode-input'
         sx={{
-          color: 'white'
+          color: 'white',
+          '&.Mui-focused': {
+            color: 'white'
+          }
         }}
       >
         Mode

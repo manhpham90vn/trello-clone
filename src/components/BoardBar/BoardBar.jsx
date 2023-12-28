@@ -95,7 +95,8 @@ const BoardBar = () => {
             '& .MuiAvatar-root': {
               width: 32,
               height: 32,
-              fontSize: '16px'
+              fontSize: '16px',
+              borderColor: 'transparent'
             }
           }}
         >
