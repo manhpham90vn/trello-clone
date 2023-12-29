@@ -1,3 +1,5 @@
+import { useSortable } from '@dnd-kit/sortable'
+import { CSS } from '@dnd-kit/utilities'
 import { ContentCopy, ContentCut, ContentPaste } from '@mui/icons-material'
 import AddCardIcon from '@mui/icons-material/AddCard'
 import Cloud from '@mui/icons-material/Cloud'
@@ -26,6 +28,14 @@ export default function Columns({ column }) {
     setAnchorEl(null)
   }
 
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id: column._id, data: { ...column } })
+
+  const dndKitColumnStyles = {
+    transform: CSS.Translate.toString(transform),
+    transition
+  }
+
   return (
     <Box
       sx={{
@@ -39,6 +49,10 @@ export default function Columns({ column }) {
         maxHeight: (theme) =>
           `calc(${theme.trelloApp.boardContentHeight} - ${theme.spacing(5)})`
       }}
+      ref={setNodeRef}
+      style={dndKitColumnStyles}
+      {...attributes}
+      {...listeners}
     >
       <Box
         sx={{
