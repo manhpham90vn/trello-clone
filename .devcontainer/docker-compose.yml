@@ -9,4 +9,4 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ../:/workspace
-      - ~/.ssh:/vscode/.ssh
+      - ~/.ssh:/home/vscode/.ssh
