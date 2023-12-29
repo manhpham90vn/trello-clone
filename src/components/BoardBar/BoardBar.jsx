@@ -9,6 +9,7 @@ import Avatar from '@mui/material/Avatar'
 import AvatarGroup from '@mui/material/AvatarGroup'
 import Button from '@mui/material/Button'
 import Chip from '@mui/material/Chip'
+import { capitalizeFirstChar } from '~/utils/Utils'
 
 const MenuStyle = {
   color: 'white',
@@ -24,7 +25,7 @@ const MenuStyle = {
   }
 }
 
-const BoardBar = () => {
+const BoardBar = ({ board }) => {
   return (
     <Box
       sx={{
@@ -45,14 +46,14 @@ const BoardBar = () => {
         <Chip
           sx={MenuStyle}
           icon={<DashboardIcon />}
-          label='Home Board'
+          label={board?.title}
           clickable
         />
 
         <Chip
           sx={MenuStyle}
           icon={<VpnLockIcon />}
-          label='Public/Private Workspace'
+          label={capitalizeFirstChar(board?.type)}
           clickable
         />
 

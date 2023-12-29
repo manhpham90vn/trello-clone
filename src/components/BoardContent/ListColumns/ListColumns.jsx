@@ -3,7 +3,7 @@ import Button from '@mui/material/Button'
 import { Box } from '@mui/system'
 import Columns from '../Coumns/Columns'
 
-export default function BoardContent() {
+export default function ListColumns({ columns }) {
   return (
     <Box
       sx={{
@@ -18,9 +18,12 @@ export default function BoardContent() {
         }
       }}
     >
-      <Columns />
-      <Columns />
-      <Columns />
+      {columns?.map((column) => (
+        <Columns
+          key={column._id}
+          column={column}
+        />
+      ))}
 
       <Box
         sx={{

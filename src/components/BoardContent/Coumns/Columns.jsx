@@ -12,9 +12,11 @@ import ListItemText from '@mui/material/ListItemText'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import React from 'react'
+import { mapOrder } from '~/utils/Utils'
 import ListCards from '../ListCards/ListCards'
 
-export default function Columns() {
+export default function Columns({ column }) {
+  const orderedCards = mapOrder(column?.cards, column?.cardOrderIds, '_id')
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
   const handleClick = (event) => {
@@ -48,7 +50,7 @@ export default function Columns() {
         }}
       >
         <Typography sx={{ fontWeight: 'bold', cursor: 'pointer' }}>
-          Column Title
+          {column?.title}
         </Typography>
         <Box>
           <Tooltip title='More'>
@@ -118,7 +120,7 @@ export default function Columns() {
         </Box>
       </Box>
 
-      <ListCards />
+      <ListCards cards={orderedCards} />
 
       <Box
         sx={{
