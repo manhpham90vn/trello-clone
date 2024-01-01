@@ -3,6 +3,7 @@ import {
   DragOverlay,
   MouseSensor,
   TouchSensor,
+  closestCorners,
   defaultDropAnimationSideEffects,
   useSensor,
   useSensors
@@ -185,6 +186,7 @@ const BoardContent = ({ board }) => {
       onDragOver={onDragOver}
       onDragEnd={handleDragEnd}
       sensors={sensors}
+      collisionDetection={closestCorners}
     >
       <Box
         sx={{
