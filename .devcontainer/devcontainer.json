@@ -13,7 +13,8 @@
         "esbenp.prettier-vscode",
         "ecmel.vscode-html-css",
         "GitHub.copilot-chat",
-        "GitHub.copilot"
+        "GitHub.copilot",
+        "eamodio.gitlens"
       ]
     }
   },

@@ -27,6 +27,8 @@ const BoardContent = ({ board }) => {
   const [activeDragItemID, setActiveDragItemID] = React.useState(null)
   const [activeDragItemType, setActiveDragItemType] = React.useState(null)
   const [activeDragItemData, setActiveDragItemData] = React.useState(null)
+  const [oldColumeWhenDragingCard, setoldColumeWhenDragingCard] =
+    React.useState(null)
 
   const mouseSensor = useSensor(MouseSensor, {
     activationConstraint: {
@@ -51,34 +53,77 @@ const BoardContent = ({ board }) => {
   }, [board])
 
   const handleDragEnd = (event) => {
-    if (activeDragItemType === ACTIVE_GRAG_ITEM_TYPE.CARD) {
-      return
-    }
-
     const { active, over } = event
-    if (!over) {
+    if (!over || !active) {
       return
     }
 
-    if (active.id !== over.id) {
-      const oldIndex = orderedColumnsState.findIndex((c) => c._id === active.id)
-      const newIndex = orderedColumnsState.findIndex((c) => c._id === over.id)
-      const dndOrderedColumnsState = arrayMove(
-        orderedColumnsState,
-        oldIndex,
-        newIndex
-      )
-      const dndOrderedColumnsStateIds = dndOrderedColumnsState.map((c) => c._id)
-      console.log(dndOrderedColumnsStateIds)
-      setOrderedColumnsState(dndOrderedColumnsState)
+    if (activeDragItemType === ACTIVE_GRAG_ITEM_TYPE.CARD) {
+      const {
+        id: activeDragingCardID,
+        data: { current: activeDragingCardData }
+      } = active
+      const { id: overCardID } = over
+
+      const activeColumn = findColumneByCardID(activeDragingCardID)
+      const overColumn = findColumneByCardID(overCardID)
+
+      if (!activeColumn || !overColumn) {
+        return
+      }
+      if (oldColumeWhenDragingCard._id !== overColumn._id) {
+        console.log('move card to new column')
+      } else {
+        const oldCardIndex = oldColumeWhenDragingCard?.cards?.findIndex(
+          (c) => c._id === activeDragingCardID
+        )
+        const newCardIndex = overColumn?.cards?.findIndex(
+          (c) => c._id === overCardID
+        )
+        const dndOrderedCardState = arrayMove(
+          oldColumeWhenDragingCard?.cards,
+          oldCardIndex,
+          newCardIndex
+        )
+        setOrderedColumnsState((prevColumne) => {
+          const nextColumns = cloneDeep(prevColumne)
+
+          const targetColumn = nextColumns.find((c) => c._id === overColumn._id)
+          targetColumn.cards = dndOrderedCardState
+          targetColumn.cardOrderIds = dndOrderedCardState.map((c) => c._id)
+          return nextColumns
+        })
+      }
+    }
+
+    if (activeDragItemType === ACTIVE_GRAG_ITEM_TYPE.COLUMN) {
+      if (active.id !== over.id) {
+        const oldColumeIndex = orderedColumnsState.findIndex(
+          (c) => c._id === active.id
+        )
+        const newColumeIndex = orderedColumnsState.findIndex(
+          (c) => c._id === over.id
+        )
+        const dndOrderedColumnsState = arrayMove(
+          orderedColumnsState,
+          oldColumeIndex,
+          newColumeIndex
+        )
+        const dndOrderedColumnsStateIds = dndOrderedColumnsState.map(
+          (c) => c._id
+        )
+        console.log(dndOrderedColumnsStateIds)
+        setOrderedColumnsState(dndOrderedColumnsState)
+      }
     }
 
     setActiveDragItemID(null)
     setActiveDragItemType(null)
     setActiveDragItemData(null)
+    setoldColumeWhenDragingCard(null)
   }
 
-  const onDragOver = (event) => {
+  const handleDragOver = (event) => {
     if (activeDragItemType === ACTIVE_GRAG_ITEM_TYPE.COLUMN) {
       return
     }
@@ -168,6 +213,10 @@ const BoardContent = ({ board }) => {
         : ACTIVE_GRAG_ITEM_TYPE.COLUMN
     )
     setActiveDragItemData(event?.active?.data?.current)
+
+    if (event?.active?.data?.current?.columnId) {
+      setoldColumeWhenDragingCard(findColumneByCardID(event?.active?.id))
+    }
   }
 
   const dropAnimation = {
@@ -183,7 +232,7 @@ const BoardContent = ({ board }) => {
   return (
     <DndContext
       onDragStart={handleDragStart}
-      onDragOver={onDragOver}
+      onDragOver={handleDragOver}
       onDragEnd={handleDragEnd}
       sensors={sensors}
       collisionDetection={closestCorners}
