@@ -115,6 +115,10 @@ const BoardContent = ({ board }) => {
           rebuildActiveDragingCardData
         )
 
+        nextOverColumne.cards = nextOverColumne.cards.filter(
+          (card) => !card.fe_place_holder
+        )
+
         nextOverColumne.cardOrderIds = nextOverColumne.cards.map(
           (card) => card._id
         )
