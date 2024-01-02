@@ -12,9 +12,9 @@ import {
 } from '@dnd-kit/core'
 import { arrayMove } from '@dnd-kit/sortable'
 import { Box } from '@mui/material'
-import { cloneDeep } from 'lodash'
+import { cloneDeep, isEmpty } from 'lodash'
 import React, { useCallback, useEffect, useRef } from 'react'
-import { mapOrder } from '~/utils/Utils'
+import { generatePlaceHolders, mapOrder } from '~/utils/Utils'
 import Card from './Card/Card'
 import Columns from './Coumns/Columns'
 import ListColumns from './ListColumns/ListColumns'
@@ -89,6 +89,11 @@ const BoardContent = ({ board }) => {
         nextActiveColumne.cards = nextActiveColumne.cards.filter(
           (card) => card._id !== activeDragingCardID
         )
+
+        if (isEmpty(nextActiveColumne.cards)) {
+          nextActiveColumne.cards = [generatePlaceHolders(nextActiveColumne)]
+        }
+
         nextActiveColumne.cardOrderIds = nextActiveColumne.cards.map(
           (card) => card._id
         )

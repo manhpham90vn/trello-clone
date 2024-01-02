@@ -15,3 +15,12 @@ export const mapOrder = (originalArray, orderArray, key) => {
 
   return orderedArray
 }
+
+export const generatePlaceHolders = (column) => {
+  return {
+    _id: `${column._id}-placeholder-card`,
+    boardId: column.boardId,
+    columnId: column._id,
+    fe_place_holder: true
+  }
+}
