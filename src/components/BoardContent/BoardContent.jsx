@@ -7,7 +7,6 @@ import {
   defaultDropAnimationSideEffects,
   getFirstCollision,
   pointerWithin,
-  rectIntersection,
   useSensor,
   useSensors
 } from '@dnd-kit/core'
@@ -273,12 +272,12 @@ const BoardContent = ({ board }) => {
       }
 
       const pointerInterSection = pointerWithin(args)
-      const interSection =
-        pointerInterSection?.length > 0
-          ? pointerInterSection
-          : rectIntersection(args)
 
-      let overID = getFirstCollision(interSection)?.id
+      if (!pointerInterSection?.length) {
+        return
+      }
+
+      let overID = getFirstCollision(pointerInterSection, 'id')
 
       if (overID) {
         const intersectColumn = orderedColumnsState.find(
