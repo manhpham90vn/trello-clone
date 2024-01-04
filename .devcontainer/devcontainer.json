@@ -5,7 +5,9 @@
   "initializeCommand": "./.devcontainer/initializeCommand.sh",
   "dockerComposeFile": "docker-compose.yml",
   "postCreateCommand": "./.devcontainer/postCreateCommand.sh",
-  "forwardPorts": [5173],
+  "forwardPorts": [
+    5173
+  ],
   "customizations": {
     "vscode": {
       "extensions": [
@@ -15,7 +17,17 @@
         "GitHub.copilot-chat",
         "GitHub.copilot",
         "eamodio.gitlens"
-      ]
+      ],
+      "settings": {
+        "terminal.integrated.shell.osx": "/bin/zsh",
+        "terminal.integrated.defaultProfile.linux": "zsh",
+        "editor.formatOnSave": true,
+        "files.autoSave": "afterDelay",
+        "files.autoSaveDelay": 1000,
+        "editor.codeActionsOnSave": {
+          "source.organizeImports": true
+        }
+      }
     }
   },
   "features": {
