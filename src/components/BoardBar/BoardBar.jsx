@@ -4,7 +4,7 @@ import DashboardIcon from '@mui/icons-material/Dashboard'
 import FilterList from '@mui/icons-material/FilterList'
 import PersonAddIcon from '@mui/icons-material/PersonAdd'
 import VpnLockIcon from '@mui/icons-material/VpnLock'
-import { Box, Tooltip } from '@mui/material'
+import { Box, Toolbar, Tooltip } from '@mui/material'
 import Avatar from '@mui/material/Avatar'
 import AvatarGroup from '@mui/material/AvatarGroup'
 import Button from '@mui/material/Button'
@@ -43,12 +43,14 @@ const BoardBar = ({ board }) => {
       }}
     >
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-        <Chip
-          sx={MenuStyle}
-          icon={<DashboardIcon />}
-          label={board?.title}
-          clickable
-        />
+        <Toolbar title={board?.description}>
+          <Chip
+            sx={MenuStyle}
+            icon={<DashboardIcon />}
+            label={board?.title}
+            clickable
+          />
+        </Toolbar>
 
         <Chip
           sx={MenuStyle}
