@@ -11,16 +11,24 @@ import { useState } from 'react'
 import { toast } from 'react-toastify'
 import Columns from '../Coumns/Columns'
 
-export default function ListColumns({ columns }) {
+export default function ListColumns({
+  columns,
+  createNewColumn,
+  createNewCard
+}) {
   const [openNewColumnForm, setOpenNewColumnForm] = useState(false)
   const toggleOpenNewColumnForm = () => setOpenNewColumnForm(!openNewColumnForm)
   const [newColumnTitle, setNewColumnTitle] = useState('')
 
-  const addNewColumn = () => {
+  const addNewColumn = async () => {
     if (!newColumnTitle) {
       toast.error('Please enter column title')
       return
     }
+    const column = {
+      title: newColumnTitle
+    }
+    await createNewColumn(column)
     toggleOpenNewColumnForm()
     setNewColumnTitle('')
   }
@@ -47,6 +55,7 @@ export default function ListColumns({ columns }) {
           <Columns
             key={column._id}
             column={column}
+            createNewCard={createNewCard}
           />
         ))}
         {!openNewColumnForm ? (

@@ -20,7 +20,7 @@ import { toast } from 'react-toastify'
 import { mapOrder } from '~/utils/Utils'
 import ListCards from '../ListCards/ListCards'
 
-export default function Columns({ column }) {
+export default function Columns({ column, createNewCard }) {
   const orderedCards = mapOrder(column?.cards, column?.cardOrderIds, '_id')
   const [openNewCardForm, setOpenNewCardForm] = useState(false)
   const toggleOpenNewCardForm = () => setOpenNewCardForm(!openNewCardForm)
@@ -35,13 +35,14 @@ export default function Columns({ column }) {
     setAnchorEl(null)
   }
 
-  const addNewColumn = () => {
+  const addNewColumn = async () => {
     if (!newCardTitle) {
       toast.error('Please enter card title', {
         position: 'bottom-right'
       })
       return
     }
+    await createNewCard({ title: newCardTitle, columnId: column._id })
     toggleOpenNewCardForm()
     setNewCardTitle('')
   }

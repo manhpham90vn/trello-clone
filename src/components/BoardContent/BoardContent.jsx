@@ -23,7 +23,7 @@ const ACTIVE_GRAG_ITEM_TYPE = {
   CARD: 'CARD'
 }
 
-const BoardContent = ({ board }) => {
+const BoardContent = ({ board, createNewColumn, createNewCard }) => {
   const [orderedColumnsState, setOrderedColumnsState] = React.useState([])
   const [activeDragItemID, setActiveDragItemID] = React.useState(null)
   const [activeDragItemType, setActiveDragItemType] = React.useState(null)
@@ -327,7 +327,11 @@ const BoardContent = ({ board }) => {
           padding: '10px 0'
         }}
       >
-        <ListColumns columns={orderedColumnsState} />
+        <ListColumns
+          columns={orderedColumnsState}
+          createNewColumn={createNewColumn}
+          createNewCard={createNewCard}
+        />
         <DragOverlay dropAnimation={dropAnimation}>
           {!activeDragItemType && null}
           {activeDragItemType === ACTIVE_GRAG_ITEM_TYPE.COLUMN && (

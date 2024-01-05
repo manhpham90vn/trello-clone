@@ -1,6 +1,10 @@
 import Container from '@mui/material/Container'
 import { useEffect, useState } from 'react'
-import { fetchBoardDetailsAPI } from '~/apis'
+import {
+  createNewCardAPI,
+  createNewColumnAPI,
+  fetchBoardDetailsAPI
+} from '~/apis'
 import AppBar from '~/components/AppBar/AppBar'
 import BoardBar from '~/components/BoardBar/BoardBar'
 import BoardContent from '~/components/BoardContent/BoardContent'
@@ -15,6 +19,14 @@ const Board = () => {
     })
   }, [])
 
+  const createNewColumn = async (column) => {
+    const result = await createNewColumnAPI({ ...column, boardId: board._id })
+  }
+
+  const createNewCard = async (card) => {
+    const result = await createNewCardAPI({ ...card, boardId: board._id })
+  }
+
   return (
     <Container
       disableGutters
@@ -23,7 +35,11 @@ const Board = () => {
     >
       <AppBar />
       <BoardBar board={board} />
-      <BoardContent board={board} />
+      <BoardContent
+        board={board}
+        createNewColumn={createNewColumn}
+        createNewCard={createNewCard}
+      />
     </Container>
   )
 }
