@@ -1,10 +1,10 @@
 import { experimental_extendTheme as extendTheme } from '@mui/material'
 
-const APP_BAR_HEIGHT = '58px'
+const APP_BAR_HEIGHT = '60px'
 const BOARD_BAR_HEIGHT = '60px'
 const BOARD_CONTENT_HEIGHT = `calc(100vh - ${APP_BAR_HEIGHT} - ${BOARD_BAR_HEIGHT})`
-const COLUMN_HEADER_HEIGHT = '40px'
-const COLUMN_FOOTER_HEIGHT = '40px'
+const COLUMN_HEADER_HEIGHT = '60px'
+const COLUMN_FOOTER_HEIGHT = '60px'
 
 const theme = extendTheme({
   components: {

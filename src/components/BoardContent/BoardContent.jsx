@@ -1,8 +1,6 @@
 import {
   DndContext,
   DragOverlay,
-  MouseSensor,
-  TouchSensor,
   closestCorners,
   defaultDropAnimationSideEffects,
   getFirstCollision,
@@ -14,6 +12,7 @@ import { arrayMove } from '@dnd-kit/sortable'
 import { Box } from '@mui/material'
 import { cloneDeep, isEmpty } from 'lodash'
 import React, { useCallback, useEffect, useRef } from 'react'
+import { MouseSensor, TouchSensor } from '~/utils/DnDKitCustomSensors'
 import { generatePlaceHolders, mapOrder } from '~/utils/Utils'
 import Card from './Card/Card'
 import Columns from './Coumns/Columns'

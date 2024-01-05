@@ -41,7 +41,11 @@ export default function Card({ card }) {
         cursor: 'pointer',
         boxShadow: '0 1px 1px rgba(0,0,0,.2)',
         overflow: 'unset',
-        display: card?.fe_place_holder ? 'none' : 'block'
+        display: card?.fe_place_holder ? 'none' : 'block',
+        border: '1px solid transparent',
+        '&:hover': {
+          borderColor: (theme) => theme.palette.primary.main
+        }
       }}
       ref={setNodeRef}
       style={dndKitCardStyles}
