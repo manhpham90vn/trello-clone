@@ -23,7 +23,12 @@ const ACTIVE_GRAG_ITEM_TYPE = {
   CARD: 'CARD'
 }
 
-const BoardContent = ({ board, createNewColumn, createNewCard }) => {
+const BoardContent = ({
+  board,
+  createNewColumn,
+  createNewCard,
+  moveColumns
+}) => {
   const [orderedColumnsState, setOrderedColumnsState] = React.useState([])
   const [activeDragItemID, setActiveDragItemID] = React.useState(null)
   const [activeDragItemType, setActiveDragItemType] = React.useState(null)
@@ -249,10 +254,7 @@ const BoardContent = ({ board, createNewColumn, createNewCard }) => {
           oldColumeIndex,
           newColumeIndex
         )
-        const dndOrderedColumnsStateIds = dndOrderedColumnsState.map(
-          (c) => c._id
-        )
-        console.log(dndOrderedColumnsStateIds)
+        moveColumns(dndOrderedColumnsState)
         setOrderedColumnsState(dndOrderedColumnsState)
       }
     }

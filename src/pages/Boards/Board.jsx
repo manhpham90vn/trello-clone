@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react'
 import {
   createNewCardAPI,
   createNewColumnAPI,
-  fetchBoardDetailsAPI
+  fetchBoardDetailsAPI,
+  updateBoardDetailsAPI
 } from '~/apis'
 import AppBar from '~/components/AppBar/AppBar'
 import BoardBar from '~/components/BoardBar/BoardBar'
@@ -15,7 +16,7 @@ const Board = () => {
   const [board, setBoard] = useState(null)
 
   useEffect(() => {
-    const boardID = '6597d0a7854ef907ae1f1861'
+    const boardID = '6597d9b2cb6cba3db7d661e4'
     fetchBoardDetailsAPI(boardID).then((board) => {
       board.columns.forEach((column) => {
         if (isEmpty(column.cards)) {
@@ -50,6 +51,17 @@ const Board = () => {
     setBoard(newBoard)
   }
 
+  const moveColumns = async (dndOrderedColumns) => {
+    const dndOrderedColumnsStateIds = dndOrderedColumns.map((c) => c._id)
+    const newBoard = { ...board }
+    newBoard.columns = dndOrderedColumns
+    newBoard.columnOrderIds = dndOrderedColumnsStateIds
+    setBoard(newBoard)
+    await updateBoardDetailsAPI(newBoard._id, {
+      columnOrderIds: dndOrderedColumnsStateIds
+    })
+  }
+
   return (
     <Container
       disableGutters
@@ -62,6 +74,7 @@ const Board = () => {
         board={board}
         createNewColumn={createNewColumn}
         createNewCard={createNewCard}
+        moveColumns={moveColumns}
       />
     </Container>
   )
