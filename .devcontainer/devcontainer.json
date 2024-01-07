@@ -16,7 +16,8 @@
         "ecmel.vscode-html-css",
         "GitHub.copilot-chat",
         "GitHub.copilot",
-        "eamodio.gitlens"
+        "eamodio.gitlens",
+        "ms-azuretools.vscode-docker"
       ],
       "settings": {
         "terminal.integrated.shell.osx": "/bin/zsh",
@@ -44,7 +45,8 @@
       "version": "latest",
       "ppa": "false"
     },
-    "ghcr.io/devcontainers/features/github-cli:1": {}
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
   },
   "remoteUser": "vscode"
 }
