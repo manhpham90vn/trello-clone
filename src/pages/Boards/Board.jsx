@@ -20,7 +20,7 @@ const Board = () => {
   const [board, setBoard] = useState(null)
 
   useEffect(() => {
-    const boardID = '659b9a6520f948b14752a12b'
+    const boardID = '659ba0ae20f948b14752a135'
     fetchBoardDetailsAPI(boardID).then((board) => {
       board.columns = mapOrder(board?.columns, board?.columnOrderIds, '_id')
       board.columns.forEach((column) => {
@@ -52,8 +52,13 @@ const Board = () => {
       (column) => column._id === result.columnId
     )
     if (columnUpdate) {
-      columnUpdate.cards.push(result)
-      columnUpdate.cardOrderIds.push(result._id)
+      if (columnUpdate.cards.some((c) => c.fe_place_holder)) {
+        columnUpdate.cards = [result]
+        columnUpdate.cards = [result._id]
+      } else {
+        columnUpdate.cards.push(result)
+        columnUpdate.cardOrderIds.push(result._id)
+      }
     }
     setBoard(newBoard)
   }
@@ -99,11 +104,17 @@ const Board = () => {
     newBoard.columns = dndOrderedColumns
     newBoard.columnOrderIds = dndOrderedColumnsStateIds
     setBoard(newBoard)
+
+    let prevCardOrderIds =
+      dndOrderedColumns.find((c) => c._id === prevColumneId)?.cardOrderIds || []
+
+    if (prevCardOrderIds[0].includes('placeholder-card')) {
+      prevCardOrderIds = []
+    }
     moveCardInDifferentColumnAPI({
       currentCardId,
       prevColumneId,
-      prevCardOrderIds: dndOrderedColumns.find((c) => c._id === prevColumneId)
-        ?.cardOrderIds,
+      prevCardOrderIds,
       nextColumneId,
       nextCardOrderIds: dndOrderedColumns.find((c) => c._id === nextColumneId)
         ?.cardOrderIds
