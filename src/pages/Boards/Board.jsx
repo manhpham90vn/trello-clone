@@ -22,7 +22,7 @@ const Board = () => {
   const [board, setBoard] = useState(null)
 
   useEffect(() => {
-    const boardID = '659ba0ae20f948b14752a135'
+    const boardID = '659bb9499830bf7e6e12b549'
     fetchBoardDetailsAPI(boardID).then((board) => {
       board.columns = mapOrder(board?.columns, board?.columnOrderIds, '_id')
       board.columns.forEach((column) => {
@@ -56,7 +56,7 @@ const Board = () => {
     if (columnUpdate) {
       if (columnUpdate.cards.some((c) => c.fe_place_holder)) {
         columnUpdate.cards = [result]
-        columnUpdate.cards = [result._id]
+        columnUpdate.cardOrderIds = [result._id]
       } else {
         columnUpdate.cards.push(result)
         columnUpdate.cardOrderIds.push(result._id)
