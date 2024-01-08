@@ -28,7 +28,8 @@ const BoardContent = ({
   createNewColumn,
   createNewCard,
   moveColumns,
-  moveCardInSameColumn
+  moveCardInSameColumn,
+  moveCardInDifferentColumn
 }) => {
   const [orderedColumnsState, setOrderedColumnsState] = React.useState([])
   const [activeDragItemID, setActiveDragItemID] = React.useState(null)
@@ -62,7 +63,8 @@ const BoardContent = ({
     over,
     activeColumn,
     activeDragingCardID,
-    activeDragingCardData
+    activeDragingCardData,
+    triggerFrom
   ) => {
     setOrderedColumnsState((prevColumne) => {
       const overCardIndex = overColumn?.cards?.findIndex(
@@ -124,6 +126,15 @@ const BoardContent = ({
         )
       }
 
+      if (triggerFrom === 'handleDragEnd') {
+        moveCardInDifferentColumn(
+          activeDragingCardID,
+          oldColumeWhenDragingCard._id,
+          nextOverColumne._id,
+          nextColumne
+        )
+      }
+
       return nextColumne
     })
   }
@@ -180,7 +191,8 @@ const BoardContent = ({
         over,
         activeColumn,
         activeDragingCardID,
-        activeDragingCardData
+        activeDragingCardData,
+        'handleDragOver'
       )
     }
   }
@@ -212,7 +224,8 @@ const BoardContent = ({
           over,
           activeColumn,
           activeDragingCardID,
-          activeDragingCardData
+          activeDragingCardData,
+          'handleDragEnd'
         )
       } else {
         const oldCardIndex = oldColumeWhenDragingCard?.cards?.findIndex(

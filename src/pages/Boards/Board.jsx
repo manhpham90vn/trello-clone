@@ -7,6 +7,7 @@ import {
   createNewCardAPI,
   createNewColumnAPI,
   fetchBoardDetailsAPI,
+  moveCardInDifferentColumnAPI,
   updateBoardDetailsAPI,
   updateColumnDetailsAPI
 } from '~/apis'
@@ -19,7 +20,7 @@ const Board = () => {
   const [board, setBoard] = useState(null)
 
   useEffect(() => {
-    const boardID = '6597d9b2cb6cba3db7d661e4'
+    const boardID = '659b9a6520f948b14752a12b'
     fetchBoardDetailsAPI(boardID).then((board) => {
       board.columns = mapOrder(board?.columns, board?.columnOrderIds, '_id')
       board.columns.forEach((column) => {
@@ -87,6 +88,28 @@ const Board = () => {
     })
   }
 
+  const moveCardInDifferentColumn = (
+    currentCardId,
+    prevColumneId,
+    nextColumneId,
+    dndOrderedColumns
+  ) => {
+    const dndOrderedColumnsStateIds = dndOrderedColumns.map((c) => c._id)
+    const newBoard = { ...board }
+    newBoard.columns = dndOrderedColumns
+    newBoard.columnOrderIds = dndOrderedColumnsStateIds
+    setBoard(newBoard)
+    moveCardInDifferentColumnAPI({
+      currentCardId,
+      prevColumneId,
+      prevCardOrderIds: dndOrderedColumns.find((c) => c._id === prevColumneId)
+        ?.cardOrderIds,
+      nextColumneId,
+      nextCardOrderIds: dndOrderedColumns.find((c) => c._id === nextColumneId)
+        ?.cardOrderIds
+    })
+  }
+
   if (!board) {
     return (
       <Box
@@ -118,6 +141,7 @@ const Board = () => {
         createNewCard={createNewCard}
         moveColumns={moveColumns}
         moveCardInSameColumn={moveCardInSameColumn}
+        moveCardInDifferentColumn={moveCardInDifferentColumn}
       />
     </Container>
   )
