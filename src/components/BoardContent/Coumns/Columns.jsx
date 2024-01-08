@@ -17,11 +17,10 @@ import MenuItem from '@mui/material/MenuItem'
 import TextField from '@mui/material/TextField'
 import React, { useState } from 'react'
 import { toast } from 'react-toastify'
-import { mapOrder } from '~/utils/Utils'
 import ListCards from '../ListCards/ListCards'
 
 export default function Columns({ column, createNewCard }) {
-  const orderedCards = mapOrder(column?.cards, column?.cardOrderIds, '_id')
+  const orderedCards = column?.cards
   const [openNewCardForm, setOpenNewCardForm] = useState(false)
   const toggleOpenNewCardForm = () => setOpenNewCardForm(!openNewCardForm)
   const [newCardTitle, setNewCardTitle] = useState('')
@@ -42,7 +41,7 @@ export default function Columns({ column, createNewCard }) {
       })
       return
     }
-    await createNewCard({ title: newCardTitle, columnId: column._id })
+    createNewCard({ title: newCardTitle, columnId: column._id })
     toggleOpenNewCardForm()
     setNewCardTitle('')
   }

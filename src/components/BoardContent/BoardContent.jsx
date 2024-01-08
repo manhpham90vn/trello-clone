@@ -13,7 +13,7 @@ import { Box } from '@mui/material'
 import { cloneDeep, isEmpty } from 'lodash'
 import React, { useCallback, useEffect, useRef } from 'react'
 import { MouseSensor, TouchSensor } from '~/utils/DnDKitCustomSensors'
-import { generatePlaceHolders, mapOrder } from '~/utils/Utils'
+import { generatePlaceHolders } from '~/utils/Utils'
 import Card from './Card/Card'
 import Columns from './Coumns/Columns'
 import ListColumns from './ListColumns/ListColumns'
@@ -27,7 +27,8 @@ const BoardContent = ({
   board,
   createNewColumn,
   createNewCard,
-  moveColumns
+  moveColumns,
+  moveCardInSameColumn
 }) => {
   const [orderedColumnsState, setOrderedColumnsState] = React.useState([])
   const [activeDragItemID, setActiveDragItemID] = React.useState(null)
@@ -51,12 +52,7 @@ const BoardContent = ({
   const sensors = useSensors(mouseSensor, touchSensor)
 
   useEffect(() => {
-    const orderedColumns = mapOrder(
-      board?.columns,
-      board?.columnOrderIds,
-      '_id'
-    )
-    setOrderedColumnsState(orderedColumns)
+    setOrderedColumnsState(board?.columns)
   }, [board])
 
   const moveCardBeetweenColumns = (
@@ -230,14 +226,20 @@ const BoardContent = ({
           oldCardIndex,
           newCardIndex
         )
+        const dndOrderedCardIds = dndOrderedCardState.map((c) => c._id)
         setOrderedColumnsState((prevColumne) => {
           const nextColumns = cloneDeep(prevColumne)
 
           const targetColumn = nextColumns.find((c) => c._id === overColumn._id)
           targetColumn.cards = dndOrderedCardState
-          targetColumn.cardOrderIds = dndOrderedCardState.map((c) => c._id)
+          targetColumn.cardOrderIds = dndOrderedCardIds
           return nextColumns
         })
+        moveCardInSameColumn(
+          dndOrderedCardState,
+          dndOrderedCardIds,
+          oldColumeWhenDragingCard._id
+        )
       }
     }
 
@@ -254,8 +256,8 @@ const BoardContent = ({
           oldColumeIndex,
           newColumeIndex
         )
-        moveColumns(dndOrderedColumnsState)
         setOrderedColumnsState(dndOrderedColumnsState)
+        moveColumns(dndOrderedColumnsState)
       }
     }
 

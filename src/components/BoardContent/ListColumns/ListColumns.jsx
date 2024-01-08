@@ -28,7 +28,7 @@ export default function ListColumns({
     const column = {
       title: newColumnTitle
     }
-    await createNewColumn(column)
+    createNewColumn(column)
     toggleOpenNewColumnForm()
     setNewColumnTitle('')
   }
