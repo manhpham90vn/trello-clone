@@ -3,9 +3,11 @@ import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import { isEmpty } from 'lodash'
 import { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 import {
   createNewCardAPI,
   createNewColumnAPI,
+  deleteColumnDetailsAPI,
   fetchBoardDetailsAPI,
   moveCardInDifferentColumnAPI,
   updateBoardDetailsAPI,
@@ -121,6 +123,18 @@ const Board = () => {
     })
   }
 
+  const handleDelete = (columnId) => {
+    const newBoard = { ...board }
+    newBoard.columns = newBoard.columns.filter((c) => c._id !== columnId)
+    newBoard.columnOrderIds = newBoard.columnOrderIds.filter(
+      (c) => c.id !== columnId
+    )
+    setBoard(newBoard)
+    deleteColumnDetailsAPI(columnId).then((res) => {
+      toast.success(res?.result)
+    })
+  }
+
   if (!board) {
     return (
       <Box
@@ -153,6 +167,7 @@ const Board = () => {
         moveColumns={moveColumns}
         moveCardInSameColumn={moveCardInSameColumn}
         moveCardInDifferentColumn={moveCardInDifferentColumn}
+        handleDelete={handleDelete}
       />
     </Container>
   )

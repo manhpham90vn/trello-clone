@@ -29,7 +29,8 @@ const BoardContent = ({
   createNewCard,
   moveColumns,
   moveCardInSameColumn,
-  moveCardInDifferentColumn
+  moveCardInDifferentColumn,
+  handleDelete
 }) => {
   const [orderedColumnsState, setOrderedColumnsState] = React.useState([])
   const [activeDragItemID, setActiveDragItemID] = React.useState(null)
@@ -348,6 +349,7 @@ const BoardContent = ({
           columns={orderedColumnsState}
           createNewColumn={createNewColumn}
           createNewCard={createNewCard}
+          handleDelete={handleDelete}
         />
         <DragOverlay dropAnimation={dropAnimation}>
           {!activeDragItemType && null}
